@@ -136,7 +136,7 @@ def traintest_split(intermediate_X, intermediate_y, X_train, X_test, y_train, y_
 
     
 @flor.func
-def train_test(X_train, X_test, y_train, y_test, hyperparameters, precision, recall, **kwargs):
+def train_test(X_train, X_test, y_train, y_test, hyperparameters, report, **kwargs):
     '''
 
     Flor function to train and test with hyperparameters.
@@ -155,6 +155,7 @@ def train_test(X_train, X_test, y_train, y_test, hyperparameters, precision, rec
     
     #Either train Random Forest or Multi-layer Perception Classifier
     clf = RandomForestClassifier(n_estimators=hyperparameters).fit(X_train, y_train).fit(X_train, y_train)
+#     clf = MultinomialNB().fit(X_train, y_train)
 
     print("Predicting Model")
     y_pred = clf.predict(X_test)
@@ -162,18 +163,24 @@ def train_test(X_train, X_test, y_train, y_test, hyperparameters, precision, rec
     print("Writing Results") 
     
     #fix this to output dataframe
-    prec, rec, f1, _ = precision_recall_fscore_support(y_test, y_pred, average='weighted')
+    c = classification_report(y_test, y_pred).split('\n')
+    
+    output = []
+    for x in range(len(c)):
+        if x>2 and c[x]!='':
+            temp = {}
+            data = []
+            for each in c[x].split('    '):
+                if each != '':
+                    data.append(each)
+            temp['class'] = data[0]
+            temp['precision'] = float(data[1])
+            temp['recall'] = float(data[2])
+            temp['f1-score'] = float(data[3])
+            temp['support'] = float(data[4])
+            output.append(temp)
+            
+    pd.DataFrame.from_dict(output).to_csv(report)
     
     
-    #change to output dataframe
-    #Write the precision to the output file
-    output = open(precision, 'w')
-    output.write(str(hyperparameters) + '\n')
-    output.write(str(prec))
-    output.close()
     
-    #Write the recall to the output file
-    output = open(recall, 'w')
-    output.write(str(hyperparameters) + '\n')
-    output.write(str(rec))
-    output.close()
