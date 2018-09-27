@@ -32,22 +32,18 @@ def train_test(X_train, X_test, y_train, y_test, hyperparameters, precision, rec
     print("Training Model")
     
     #Either train Random Forest or Multi-layer Perception Classifier
-#     clf = RandomForestClassifier(n_estimators=hyperparameters).fit(X_train, y_train).fit(X_train, y_train)
-    
-    #clf = MLPClassifier(solver='sgd', alpha=1e-5, hidden_layer_sizes=(2, ), random_state=1).fit(X_train, y_train)
-    clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(2, ), random_state=1).fit(X_train, y_train)    
-    #clf = MLPClassifier(solver='adam', alpha=1e-5, hidden_layer_sizes=(2, ), random_state=1, max_iter = 1000).fit(X_train, y_train)
-    #clf = MultinomialNB().fit(X_train, y_train)
-#     clf = DecisionTreeClassifier(splitter=hyperparameters).fit(X_train, y_train)
-    #clf = KNeighborsClassifier().fit(X_train, y_train)
+    #FIXME! A model is missing!
 
     print("Predicting Model")
     y_pred = clf.predict(X_test)
     
     print("Writing Results") 
     
+    #fix this to output dataframe
     prec, rec, f1, _ = precision_recall_fscore_support(y_test, y_pred, average='weighted')
     
+    
+    #change to output dataframe
     #Write the precision to the output file
     output = open(precision, 'w')
     output.write(str(hyperparameters) + '\n')
