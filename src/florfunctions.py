@@ -116,7 +116,7 @@ def traintest_split(intermediate_X, intermediate_y, X_train, X_test, y_train, y_
     X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.20, random_state=92)
 #     def train_drop(el):
 #         tokens = word_tokenize(el)
-#         tokens = [el for el in tokens if random.random() >= 0.75]
+#         tokens = [word for word in tokens if word.isalpha()]
 #         ret_str = " ".join(tokens) 
 #         return ret_str 
 #     X_tr = [train_drop(el) for el in X_tr]
