@@ -35,6 +35,7 @@ def preprocessing(data_loc, intermediate_X, intermediate_y, **kwargs):
     Data Preprocessing
 
     '''
+    import random
     print("Data Preprocessing")
     data = pd.read_json(data_loc)
     X = data['text']
@@ -72,8 +73,15 @@ def preprocessing(data_loc, intermediate_X, intermediate_y, **kwargs):
             lemmas.append(lemma)
         return lemmas
 
+    def train_drop(el):
+        tokens = word_tokenize(el)
+        tokens = [el for el in tokens if random.random() >= 0.75]
+        ret_str = " ".join(tokens) 
+        return ret_str 
+
     start_time = time.time()
     X = [filter_sentence(el) for el in X]
+#     X = [train_drop(el) for el in X]
     print("--- %s seconds ---" % (time.time() - start_time))
 
     y_new = []
@@ -114,12 +122,8 @@ def traintest_split(intermediate_X, intermediate_y, X_train, X_test, y_train, y_
         y = json.load(json_data)
         json_data.close()
     X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.20, random_state=92)
-#     def train_drop(el):
-#         tokens = word_tokenize(el)
-#         tokens = [el for el in tokens if random.random() >= 0.75]
-#         ret_str = " ".join(tokens) 
-#         return ret_str 
-#     X_tr = [train_drop(el) for el in X_tr]
+
+    # X_tr = [train_drop(el) for el in X_tr]
     vectorizer = TfidfVectorizer()
     start_time = time.time()
     vectorizer.fit(X_tr)
@@ -159,7 +163,7 @@ def train_test(X_train, X_test, y_train, y_test, hyperparameters, report, **kwar
 
     print("Predicting Model")
     y_pred = clf.predict(X_test)
-    
+    score = clf.score(X_test, y_test)
     print("Writing Results") 
     
     #fix this to output dataframe
@@ -182,5 +186,5 @@ def train_test(X_train, X_test, y_train, y_test, hyperparameters, report, **kwar
             
     pd.DataFrame.from_dict(output).to_csv(report)
     
-    
+    return {'score': score}
     
