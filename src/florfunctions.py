@@ -28,7 +28,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.metrics import average_precision_score, recall_score, precision_recall_fscore_support
 
-@flor.func
+
 def preprocessing(data_loc, intermediate_X, intermediate_y, **kwargs):
     '''
 
@@ -100,7 +100,7 @@ def preprocessing(data_loc, intermediate_X, intermediate_y, **kwargs):
        json.dump(y, outfile)
     
 
-@flor.func #SOLUTION
+
 def traintest_split(intermediate_X, intermediate_y, X_train, X_test, y_train, y_test, **kwargs):
     '''
 
@@ -135,8 +135,8 @@ def traintest_split(intermediate_X, intermediate_y, X_train, X_test, y_train, y_
     scipy.sparse.save_npz(X_test, X_te)
 
     
-@flor.func
-def train_test(X_train, X_test, y_train, y_test, hyperparameters, report, **kwargs):
+
+def train_test(X_train, X_test, y_train, y_test, report, **kwargs):
     '''
 
     Flor function to train and test with hyperparameters.
@@ -154,8 +154,13 @@ def train_test(X_train, X_test, y_train, y_test, hyperparameters, report, **kwar
     print("Training Model")
     
     #Either train Random Forest or Multi-layer Perception Classifier
-    clf = RandomForestClassifier(n_estimators=hyperparameters).fit(X_train, y_train).fit(X_train, y_train)
+    clf = RandomForestClassifier(n_estimators=...).fit(X_train, y_train).fit(X_train, y_train)
 #     clf = MultinomialNB().fit(X_train, y_train)
+#     clf = MLPClassifier(solver='sgd', alpha=1e-5, hidden_layer_sizes=hyperparameters, random_state=1).fit(X_train, y_train)\n",
+#     clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=hyperparameters, random_state=1).fit(X_train, y_train)
+#     clf = MLPClassifier(solver='adam', alpha=1e-5, hidden_layer_sizes=hyperparameters, random_state=1, max_iter = 1000).fit(X_train, y_train)
+#     clf = MultinomialNB().fit(X_train, y_train) #no hyperparameters needed
+#     clf = KNeighborsClassifier().fit(X_train, y_train) #no hyperparameters needed
 
     print("Predicting Model")
     y_pred = clf.predict(X_test)
