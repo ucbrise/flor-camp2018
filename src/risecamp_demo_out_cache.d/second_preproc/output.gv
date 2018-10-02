@@ -1,9 +1,9 @@
 digraph source {
-	 3 [label="tutorial.ipynb" shape=box]
-	 4 [label="data.json" shape=box]
+	 3 [label="preprocessing" shape=box]
+	 4 [label="data_loc" shape=box]
 	 2 [label="preprocessing" shape=ellipse]
-	 0 [label="data_clean_X.json" shape=box]
-	 1 [label="data_clean_y.json" shape=box]
+	 0 [label="intermediate_X" shape=box]
+	 1 [label="intermediate_y" shape=box]
 	3 -> 2
 	4 -> 2
 	2 -> 0
