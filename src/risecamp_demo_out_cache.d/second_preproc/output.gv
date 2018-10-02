@@ -1,0 +1,11 @@
+digraph source {
+	 3 [label="tutorial.ipynb" shape=box]
+	 4 [label="data.json" shape=box]
+	 2 [label="preprocessing" shape=ellipse]
+	 0 [label="data_clean_X.json" shape=box]
+	 1 [label="data_clean_y.json" shape=box]
+	3 -> 2
+	4 -> 2
+	2 -> 0
+	2 -> 1
+}
