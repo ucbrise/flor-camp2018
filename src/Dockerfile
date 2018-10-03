@@ -11,12 +11,15 @@ USER $NB_USER
 
 # download and set up Flor
 RUN pip3 install graphviz gitpython tqdm
-RUN touch ._3.txt
+RUN touch ._5.txt
 RUN git clone https://github.com/ucbrise/flor
 WORKDIR flor
 RUN pip3 install -r requirements.txt
 RUN pip3 install nltk
 RUN pip3 install stop_words
+RUN pip3 install jupyter_contrib_nbextensions
+RUN jupyter contrib nbextension install --user
+RUN jupyter nbextension enable spellchecker/main
 RUN python3 -c 'import nltk; nltk.download("punkt")'
 RUN python3 -c 'import nltk; nltk.download("wordnet")'
 

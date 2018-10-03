@@ -1,5 +1,5 @@
 digraph source {
-	 3 [label="preprocessing" shape=box]
+	 3 [label="preprocess" shape=box]
 	 4 [label="data_loc" shape=box]
 	 2 [label="preprocessing" shape=ellipse]
 	 0 [label="intermediate_X" shape=box]
