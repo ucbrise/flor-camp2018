@@ -11,7 +11,7 @@ USER $NB_USER
 
 # download and set up Flor
 RUN pip3 install graphviz gitpython tqdm
-RUN touch ._15.txt
+RUN touch ._18.txt
 RUN git clone https://github.com/ucbrise/flor
 WORKDIR flor
 RUN pip3 install -r requirements.txt
@@ -37,8 +37,9 @@ USER root
 # copy the tutorial into the container.
 # do this last so that your container builds are as fast as possible
 # when updating the content in tutorial/
+RUN touch .__1.txt
 COPY flor_cache.d /home/$NB_USER/flor.d/
 # COPY grit_cache.d /home/$NB_USER/grit.d/
 COPY tutorial /home/$NB_USER/tutorial/
-COPY risecamp_demo_out_cache.d /home/$NB_USER/tutorial/risecamp_demo_out.d/
+COPY risecamp_demo_out_cache.d /home/$NB_USER/tutorial/bob_preproc_out.d/
 RUN chown -R $NB_USER /home/$NB_USER
