@@ -11,7 +11,7 @@ USER $NB_USER
 
 # download and set up Flor
 RUN pip3 install graphviz gitpython tqdm
-RUN touch ._26.txt
+RUN touch ._28.txt
 RUN git clone https://github.com/ucbrise/flor
 WORKDIR flor
 RUN pip3 install -r requirements.txt
