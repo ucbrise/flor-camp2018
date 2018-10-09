@@ -1,0 +1,11 @@
+digraph source {
+	 3 [label="preprocess" shape=box]
+	 4 [label="data_loc" shape=box]
+	 2 [label="preprocessing" shape=ellipse]
+	 0 [label="intermediate_X" shape=box]
+	 1 [label="intermediate_y" shape=box]
+	3 -> 2
+	4 -> 2
+	2 -> 0
+	2 -> 1
+}
