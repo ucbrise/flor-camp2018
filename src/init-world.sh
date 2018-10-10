@@ -1,8 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# This is an example startup script that performs critical initialization to
-# prepare the container environment:
-
-set -o errexit
-
-echo "hello world!"
+git clone git@github.com:ucbrise/flor-camp2018.git /tmp/flor-camp2018
+cp -a /tmp/flor-camp2018/src/tutorial/. /home/$NB_USER/tutorial/

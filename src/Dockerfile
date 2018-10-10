@@ -42,6 +42,6 @@ RUN touch .__2.txt
 COPY flor_cache.d /home/$NB_USER/flor.d/
 # COPY grit_cache.d /home/$NB_USER/grit.d/
 COPY nginx.conf /etc/nginx/sites-enabled/default
-COPY tutorial /home/$NB_USER/tutorial/
+RUN mkdir /home/$NB_USER/tutorial/
 COPY risecamp_demo_out_cache.d /home/$NB_USER/tutorial/bob_preproc_out.d/
 RUN chown -R $NB_USER /home/$NB_USER
