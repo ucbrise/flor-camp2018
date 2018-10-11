@@ -37,3 +37,7 @@ clean-build:
 .PHONY: run
 run: build
 	docker run -it --user=root $(DOCKER_RUN_FLAGS) "$(DOCKER_TAG)"
+
+.PHONY: run-only
+run-only:
+	docker run -it --user=root $(DOCKER_RUN_FLAGS) "$(DOCKER_TAG)"
