@@ -40,6 +40,7 @@ USER root
 # when updating the content in tutorial/
 RUN touch .__2.txt
 COPY flor_cache.d /home/$NB_USER/flor.d/
+COPY run_me.ipynb /home/$NB_USER/run_me.ipynb
 # COPY grit_cache.d /home/$NB_USER/grit.d/
 COPY nginx.conf /etc/nginx/sites-enabled/default
 RUN mkdir /home/$NB_USER/tutorial/
