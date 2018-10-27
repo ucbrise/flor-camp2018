@@ -11,8 +11,8 @@ USER $NB_USER
 
 # download and set up Flor
 RUN pip3 install graphviz gitpython tqdm
-RUN touch ._28.txt
-RUN git clone https://github.com/ucbrise/flor
+RUN touch ._50.txt
+COPY flor-0.0.0-alpha flor
 WORKDIR flor
 RUN pip3 install -r requirements.txt
 #RUN pip3 install nltk
